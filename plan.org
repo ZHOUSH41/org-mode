@@ -1,0 +1,16 @@
+**** Personal plan 
+***** TODO cs61b project1A  
+****** DONE project1A linked-list
+       CLOSED: [2019-03-10 日 10:32]
+****** TODO project1A array
+***** TODO csapp
+**** 研究生的课程
+***** TODO 现代回归分析的作业
+***** DONE 英语买书
+      CLOSED: [2019-03-10 日 10:31]
+***** TODO 
+
+******* Tips: 1). spacemacs 里面畅快的输入中文，可以在用 terminal 里面输入 LC_CTYPE=zh_CN.UTF-8 emacs.
+              2). 粘贴：C-o shift-p
+
+
