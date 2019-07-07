@@ -1,0 +1,172 @@
+#+TITLE: Leetcode 刷题记录板
+
+** 1.Two Sum [66%] :some question 
+*** DONE solve problem:
+两层for循环，复杂度O(n*n).
+CLOSED: [2019-03-19 二 22:38]
+*** DONE solution:
+CLOSED: [2019-03-19 二 22:45]
+个人理解:１.问题首先是个查找问题
+#+BEGIN_SRC java
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        Map<Integer,Integer> map = new HashMap<>();
+        for(int i = 0;i < nums.length;i++){
+            int complement = target - nums[i];
+            if(map.containsKey(complement) && map.get(complement) != i){//保证题上说明的:x != target - x
+                return new int[]{i,map.get(complement)};
+            }
+            map.put(nums[i],i);
+        }
+    
+        throw new IllegalArgumentException("No two sum solution");
+    }
+}
+#+END_SRC
+*** HAND problem:
+本质上是查找问题，树结构能不能行呢?或者为什么这道题要选择hashmap解法？
+１.可能是：这道题中要求了元素不重复，可以直接用hashmap映射过去
+本质上是查找问题，树结构能不能行呢?或者为什么这道题要选择hashmap解法？
+** 2.Add Two Numbers[100%]
+*** DONE solve problem
+first edition: faster than 99.19%, less than 16.9%.  
+: problem:use too much memory, reduce "new" keyword.
+CLOSED: [2019-03-20 三 08:56]
+#+BEGIN_SRC java
+ class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    //ListNode res = new ListNode(-6);// sentinel point
+    ListNode res = new ListNode(0);
+    ListNode ptr = res;
+    //ListNode ptr = res;
+    int ten = 0;
+    int single = 0;// 可以不用这个single变量，可以减少内存使用
+    while(l1 != null || l2 != null || ten != 0){
+        /**if l1 or l2 is null,val = 0 */
+        if(l1 == null){
+            l1 = new ListNode(0);// 可以不用new
+        }
+        if(l2 == null){
+            l2 = new ListNode(0);// 不用new,可以减少内存使用
+        }
+        int value = l1.val + l2.val + ten;//值相加大小
+        single = value % 10;//个位数
+        ten = value / 10;//十位数
+        ptr.next = new ListNode(single);
+        ptr = ptr.next;
+        l1 = l1.next;//update l1
+        l2 = l2.next;//update l2
+    }
+    return res.next; 
+#+END_SRC
+*** DONE solution:
+CLOSED: [2019-03-20 三 11:11]
+考察点：pointer, linked-list
+#+BEGIN_SRC java
+public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+    ListNode dummyHead = new ListNode(0);
+    ListNode p = l1, q = l2, curr = dummyHead;
+    int carry = 0;
+    while (p != null || q != null) {
+        int x = (p != null) ? p.val : 0;
+        int y = (q != null) ? q.val : 0;
+        int sum = carry + x + y;
+        carry = sum / 10;
+        curr.next = new ListNode(sum % 10);
+        curr = curr.next;
+        if (p != null) p = p.next;
+        if (q != null) q = q.next;
+    }
+    if (carry > 0) {
+        curr.next = new ListNode(carry);
+    }
+    return dummyHead.next;
+}
+#+END_SRC
+** 3.Longest Substring Without Repeating Characters[66%] : not solved
+*** DONE solve problem
+CLOSED: [2019-03-21 四 14:38]
+#+BEGIN_SRC java
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int maxLength = 0;
+        for(int i = 0; i < s.length(); i++){
+            int listL = 0;
+            String subs = "";
+            for(int j = i;j < s.length();j++){
+                if(subs.indexOf(s.charAt(j)) < 0){
+                    subs += s.charAt(j);
+                    listL += 1;
+                }else{
+                    break;
+                }
+            }
+            if(maxLength < listL) maxLength = listL;
+        }
+        return maxLength;
+    }
+}
+#+END_SRC
+*** DONE solution
+CLOSED: [2019-03-21 四 15:10]
+key-point:字串必须是连续的，我们只需要维护一个窗口，窗口内无重复字符。
+用了一个滑窗的思想，窗口在不停向右滑动，所以我们只关心每个字符最后出现的位置，并建立映射。
+窗口的右边界就是当前遍历到的字符的位置，left来指向滑动窗口的左边界：
+if(如果当前遍历到的字符从未出现过):那么直接扩大右边界
+else if(如果之前出现过) 那么就分两种情况，在或不在滑动窗口内，
+    if(如果不在滑动窗口内):当前字符可以加进来
+    else if(如果在的话)，就需要先在滑动窗口内去掉这个已经出现过的字符了，
+去掉的方法并不需要将左边界left一位一位向右遍历查找，由于我们的HashMap已经保存了该重复字符最后出现的位置，所以直接移动left指针就可以了。
+我们维护一个结果res，每次用出现过的窗口大小来更新结果res，就可以得到最终结果了。
+blog:https://www.cnblogs.com/ariel-dreamland/p/8668286.html
+#+BEGIN_SRC java
+public class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int n = s.length(), ans = 0;
+        Map<Character, Integer> map = new HashMap<>(); // current index of character
+        // try to extend the range [i, j]
+        for (int j = 0, i = 0; j < n; j++) {
+            if (map.containsKey(s.charAt(j))) {
+                i = Math.max(map.get(s.charAt(j)), i);//精华
+            }
+            ans = Math.max(ans, j - i + 1);
+            map.put(s.charAt(j), j + 1);
+            //不能写成j,因为需要满足testcase: input:"",output:1
+        }
+        return ans;
+    }
+}
+#+END_SRC
+*** TODO problem
+** 4. Median of Two Sorted Arrays[0%]:hard
+*** TODO 
+*** TODO 
+*** TODO 
+** 5. Longest Palindromic Substring
+*** 
+** 8.kill
+** 12.kill
+** 26. Remove Duplicates from Sorted Array
+*** TODO solution:
+#+BEGIN_SRC java
+class solution{
+    public int removeDuplicates(int[] nums) {
+        int index = 0;
+        for(int i:nums){
+            if(index == 0 || i > nums[index-1]){
+                nums[index++] = i;
+            }
+        }
+        return index;
+    }
+}
+#+END_SRC
+** 27. Remove Element
+*** DONE solve problem
+跟26题一样的思路,技巧
+CLOSED: [2019-06-20 四 08:58]
+** 35. Search Insert Position
+没有必要再看了
+*** DONE solve problem
+CLOSED: [2019-06-20 四 09:09]
+
