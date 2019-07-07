@@ -1,0 +1,24 @@
+#+SEQ_TODO: NEXT(n), TODO(t), WAITIING(w), SOMEDAY(s) | DONE(d) CANCELLED(c)
+
+** GTD related
+*** Weekly Review
+** schedule plan
+*** 3月
+**** <2019-03-23 六>--<2019-03-24 日> 
+***** DONE 现代回归分析作业
+CLOSED: [2019-03-25 一 12:31]
+***** HAND 图论回顾
+看到了P6开始. <2019-03-25 一 12:54> 
+***** TODO 偏头痛数据整理
+***** DONE cs61b　proj1 Gold
+CLOSED: [2019-03-25 一 12:52]
+***** TODO lab2(bomb lab)
+***** DONE 英语作业
+CLOSED: [2019-03-23 六 22:33]
+**** <2019-03-25 一>--<2019-03-29 五>
+***** TODO csapp 书和lecture
+书看到了sectioin:3.4<2019-03-27 三 09:00>
+***** TODO cs61b week5 视频和理解
+***** TODO algorithm :[#B]
+***** TODO haskell programming book :[#B]
+

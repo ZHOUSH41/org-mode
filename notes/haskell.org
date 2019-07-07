@@ -1,0 +1,44 @@
+**** ch1 基本用语
+加载/移除module:  :m , :m +<module1> , :m -<module2>
+comments: 单行注解: -- 多行注解: {- -} 
+
+可以读读haskell library中的代码[https://downloads.haskell.org/~ghc/latest/docs/html/libraries/index.html]
+函数是一种映射 T1 -> T2
+类型别名: type RGB = (Int, Int, Int)
+<<Types and Programming>> 中提到类型的好处有:
+1.提供有效的错误检查的手段
+2.更好的抽象
+3.提供类似于文档的作用
+**** ch2 类型系统和函数
+***** 类型:
+1.type的定义通过data关键字,如 data Bool = True | False
+2.typeclass的定义用过class关键字
+***** 函数:
+Haskell中函数和值没有本质区别
+****** lambda表达式:
+1.alpha替换(conversion) 命名不冲突,参数与命名无关
+2.Beta归约(reduction) 函数体的替换
+3.gamma归约(reduction) 消除冗余的lambda表达式
+****** lambda应用:
+1.匿名函数
+2.对于curry函数,在不给定前一个参数的前提下给定后一个,
+  例子:(\x -> (^) x 3) 2
+****** 表达式:
+1.条件: if..then..else
+2.参数绑定:let..in, where
+3.case..of:
+case n of
+  1 -> 
+  2 ->
+  _ ->
+4.guarded expression: | 分割
+| n > 0 = n
+| otherwise = -n
+5.pattern match
+**** ch4 库函数及其应用
+***** 预加载函数:
+函数是左结合的(重要)
+例子: > const id True 3 结果为3, 
+const id True  3 = (const id True) 3 = id 3 = 3   函数是左结合的
+1.常用的函数: id, const, flip
+

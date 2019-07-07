@@ -1,0 +1,6 @@
+磁共振(fMRI)在深度学习上的应用
+Sarraf和Tofighi[26]使用CNN中有名的LeNet-5框架结构通过AD的fMRI和sMRI数据进行了训练， 
+分别获得了98.84%和96.85%的诊断准确率，这是首次将fMRI数据用于训练基于深度学习的网络模型。
+
+- SARRAF S, TOFIGHI G. DeepAD: Alzheimer's disease classification via deep convolutional neural networks using MRI and fMRI[J/OL]. 
+  bioRxiv, 2016. doi: 10.1101/070441.

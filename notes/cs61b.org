@@ -1,0 +1,57 @@
+
+*** Efficiency comes in two flavors:
+1.) Programming cost.
+How long does it take to develop your programs?
+How easy is it to read, modify, and maintain your code?
+2.) Execution cost (starting next week).
+How much time does your program take to execute?
+How much memory does your program require?
+*** Data Structure
+**** Disjoint set(Union-Find)
+disjoint set data structure has two operations:
+1.connect(x,y)
+2.isConnected(x,y)
+-- tips:大O记号是表示＜，大Θ记号是表示逼近
+***** Quick Find
+引入数组取代了原始的集合的构造
+原因:使得isConnected更快
+| Implementation | Construcor | connect | isConnected |
+|----------------+------------+---------+-------------|
+| ListOfSets     | Θ(N)       | O(N)    | O(N)        |
+| QuickFind      | Θ(N)       | Θ(N)    | Θ(1)        |
+
+***** Quick Union 
+引入了树的构造
+原因：可以优化connect达到理想log(N)
+| Implementation | Construcor | connect | isConnected |
+|----------------+------------+---------+-------------|
+| QuickUnion     | Θ(N)      | O(N)    | O(N)        |
+From the runtime chart, QuickUnion seems worse than QuickFind! 
+Note however that O(N) as an upper bound. 
+When our trees are balanced, both connect and isConnected perform reasonably well.
+
+***** Weighted Quick Union	
+让树更平衡
+原因：connect达到了log(N)
+| Implementation       | Construcor | connect  | isConnected |
+|----------------------+------------+----------+-------------|
+| Weighted Quick Union | Θ(N)      | O(log N) | O(log N)    |
+
+**** Binary Search Tree(BST) 
+
+***** Operation
+Search:  complex -> logN
+Insert: 没有什么可以说的
+Delete: 1.没有子节点 :直接删除
+2.一个子节点 3.二个字节点
+删除根节点时,用根节点左边的最大值或者右边的最小值做根节点(具体看情况)
+
+**** B-Trees
+***** Red-Black Tree:
+**** Hashing
+hashCode
+hashTable
+*** Lab,Homework,Project
+**** HW3
+非常重要的一点:修改equal方法,一定要修改hashcode方法,不然两者可能产生冲突
+

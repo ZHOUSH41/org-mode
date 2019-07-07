@@ -1,0 +1,10 @@
+ocaml compiler a file:
+cs3110 [[http://www.cs.cornell.edu/courses/cs3110/2019sp/textbook/basics/interacting.html]]
+**** 处理小型文件,直接编译,有三种格式可以选择  
+ ocamlc -o hello.byte hello.ml
+ ocamlc -o hello.cmo hello.ml
+ ocamlc -o hello.cmi hello.ml 
+**** 处理大型的project,选择自动找link
+ocamlbuild hello.byte
+
+

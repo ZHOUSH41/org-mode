@@ -1,0 +1,119 @@
+#+STARUP: indent
+#+STARUP: overview
+#+TITLE: to-do list
+
+*** Personal Plan
+**** TODO cs61b[%] 
+***** week3[100%]
+****** DONE cs61b project1A[100%]  
+       CLOSED: [2019-03-11 一 21:20]
+******* DONE project1A linked-list
+        CLOSED: [2019-03-11 一 19:10]
+       可以得到
+******* DONE project1A array
+        CLOSED: [2019-03-11 一 19:05]
+****** DONE lab3 Unit Testing[%]
+CLOSED: [2019-03-21 四 15:47]
+******* cs61b on debugger tips: 
+: 1.Writing JUnit tests for the Flik library.
+: 2.Using the IntelliJ debugger, especially 
+: conditional breakpoints or breaking on exceptions (try this: Run -> View Breakpoints -> Check “Java Exceptions Breakpoints” -> Uncheck “Caught Exceptions”).
+: 3.Using print statements.
+: 4.Refactoring Horrible Steve’s code. Refactoring means changing the syntax without changing the functionality. 
+: This may be hard to do since HS’s code uses lots of weird stuff.
+****** DONE video 3.1-4.1[%]
+CLOSED: [2019-03-21 四 15:47]
+******* 3.1 content
+******** correctness Tool #2 :test-Driven Development(TDD)
+       1. Identify a new feature
+       2. Write a unit test for that feature
+       3. Run the test. It should fail.(Red) 
+       4. Write the code and passes test.(Green)
+          4.1 implementation is certifiably good!
+       5. Optional: Refactor code to make it safer, cleaner, etc.
+******* 4.1 content
+******** overloading
+******** DONE Dynamic method selection
+         CLOSED: [2019-03-13 三 23:07]
+1.When Java runs a method that is overriden,
+ it searches for the appropriate method signature in it's dynamic type and runs it.
+2.When Java checks to see which method to call
+(When Java runs a method that is overloaded), it checks the static type and calls the method with the parameter of the same type
+***** week4[0%]
+****** TODO project1B
+****** TODO project1 Gold
+****** TODO video 4.2,4.3,6.1-6.4
+SCHEDULED: <2019-03-15 五 07:30>
+     <2019-03-16 六 21:15> done video 4.2 
+     <2019-03-16 六 22:57> done video 4.3
+***** week5[0%]
+****** TODO video
+****** TODO lab
+****** TODO proj
+***** week6[%]
+**** TODO csapp[20%]
+: 可以不用看视频，直接看书和lecture
+***** DONE week2[100%]
+      CLOSED: [2019-03-16 六 21:13]
+****** DONE video,lecture:Floating Point
+       CLOSED: [2019-03-13 三 14:12]
+knowledge: 
+1. IEEE float point represent　(-1)^s * M * 2^E ;
+2. round-to-even （四舍五入，当是５时，看倒数第二位是不是偶数，是偶数就去掉，不是就入一位，变成偶数）;
+
+****** DONE book section:2.4
+       CLOSED: [2019-03-16 六 21:13]
+****** DONE lab1 datalab
+       CLOSED: [2019-03-16 六 21:13]
+       coding rules:
+       integer rules:no looping and conditional
+       float   rules:allow looping and conditional
+       compiler:     dlc,
+                     no include <stdio.h>
+***** TODO week3[%] 
+***** TODO week4[%]
+***** TODO week5[%]
+***** TODO week6[%]
+**** 分布式技术（知乎:分布式技术有哪些？这些技术细分领域的研究方向为何百度上基本找不到？)
+***** TODO mit 6.824 Distributed Systems
+***** TODO CMU 15-721 Advanced Database Systems
+***** TODO CMU 15-440: Distributed Systems 
+**** kecheng:
+cos326 Functional programing (Ocaml)
+****** compiler 
+15-411, cos320,cse131,CMSC 430, CIS 341
+[[https://llvm.org/docs/tutorial/OCamlLangImpl1.html]]
+[[http://www.stephendiehl.com/llvm/]]
+****** operate systems: 
+CMSC412,mit 6.828
+ 
+**** NLP 
+***** BOOKS:
+Speech and Language Processing,   by :Dan Jurafsky and James H. Martin
+Neural Network Methods for Natural Language Processing
+***** CS224n
+***** 
+*** 科研
+***** 功能链接说明： [[http://www.sbirc.ed.ac.uk/cyril/download/DTP_Functional%20connectivity%20in%20fMRI.pdf]]
+*** Tips相关的命令: 
+***** spacemacs command:
+spacemacs 里面畅快的输入中文，可以在用 terminal 里面输入 LC_CTYPE=zh_CN.UTF-8 emacs
+粘贴：C-o shift-p
+SPC s s 搜索
+SPC b d 关闭当前buffer, SPC w d关闭当前窗口
+org-mode相关:
+1.todo切换: Esc界面,t或者T就可以循环
+***** git command:
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:ZHOUSH41/Learning.git
+git push -u origin master
+***** linux卸载 command:
+sudo apt-get remove xxx  //卸载xxx
+sudo dpkg -l             //列出deb包
+*** 工作相关：
+**** Hao Zhou, [[https://zhouh.github.io/]]
+头条NLP
+**** 霍华德　(知乎)
+
