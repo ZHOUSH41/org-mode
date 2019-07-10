@@ -146,6 +146,9 @@ public class Solution {
 *** 
 ** 8.kill
 ** 12.kill
+** 15. 3 Sum, 16. 3 Sum Closest, 18. 4 Sum
+description:三道题都是一种解法,先排序再用两个指针移动,作出解答
+需要注意的是,15和18题需要排除重复元素,有几行代码需要注意
 ** 26. Remove Duplicates from Sorted Array
 *** TODO solution:
 #+BEGIN_SRC java
@@ -169,4 +172,14 @@ CLOSED: [2019-06-20 四 08:58]
 没有必要再看了
 *** DONE solve problem
 CLOSED: [2019-06-20 四 09:09]
+** 142.Linked List Cycle II 
+非常好的讲解[https://www.cnblogs.com/hiddenfox/p/3408931.html]
+设A:链表起始位置到第一个循环(下表述为:node)距离
+  B:slow指针第一次和fast相遇时(Z位置),距离node的距离
+  C:Z位置距离node的距离
+第一次相遇时,slow指针跑了A+B,fast跑了A+B+C+B
+2*slow = fast 推出: 2*(A+B) = A+B+C+B  => A = C
+得到解法:第一次相遇时,把slow重新定位在头,fast在原位,每次都移动一位,下一次相遇就是起始位置
+ 
+
 

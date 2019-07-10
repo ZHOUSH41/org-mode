@@ -1,0 +1,23 @@
+*** Preface
+three pieces指的是:virtualization(虚拟化), concurrency(并发) and persistence(持久)
+
+crux of the problem,说明问题的关键所在
+
+: Very important:homework, project(都在书所在的网页上,并且可以测试)
+*** CH2 
+运行程序其实就是在执行指令,处理器从memory中得到指令,decode,然后执行.
+这本书讲的做的很多事情,就是make system easy to use.
+
+操作系统是怎么实现虚拟化的?我们focus on how而不是why(原因就是easy to use)
+virtualization:
+虚拟化CPU,内存,可以看作每个应用都拥有单独的CPU和内存,
+concurrency:
+OS需要concurrently(at once)处理
+OS怎么实现并发?
+persistence:
+稳定性,特别data(File)很容易丢失,怎么保证稳定,正确的高性能的,不受软硬件干扰的做好稳定性
+需要注意的是:OS中并没有虚拟化disk,OS假设文件中的数据会经常share.
+Design Goals:
+实现好OS,要注意到找到三者之间的平衡点:
+1.抽象2.高性能3.保护(各应用之间做好隔离)4.稳定,可靠性
+当然还有其他的如:能耗,安全,移动性
