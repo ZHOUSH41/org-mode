@@ -1,0 +1,10 @@
+
+ #+TITLE: An Introduction to Computer Network
+ 
+*** Unit 1:The Internet and IP
+四层结构: Application -> Transport -> Network -> Link 
+
+在transport层:You’ll learn that most applications use a transport layer called the
+Transmission Control Protocol, or TCP.(TCP解释与来源)
+在网络层: Internet Protocol,or IP
+

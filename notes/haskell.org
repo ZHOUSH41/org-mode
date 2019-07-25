@@ -41,4 +41,7 @@ case n of
 例子: > const id True 3 结果为3, 
 const id True  3 = (const id True) 3 = id 3 = 3   函数是左结合的
 1.常用的函数: id, const, flip
+**** ch5 递归函数
+代码在recursive.hs中
+二分查找,汉诺塔
 

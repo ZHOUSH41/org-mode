@@ -21,3 +21,52 @@ Design Goals:
 实现好OS,要注意到找到三者之间的平衡点:
 1.抽象2.高性能3.保护(各应用之间做好隔离)4.稳定,可靠性
 当然还有其他的如:能耗,安全,移动性
+*** CH4 The Abstraction: The Process
+process:最简直,直观的来讲,一个process就是一个运行的程序
+**** 怎么实现CPU的虚拟化:
+基本技术就是:time sharing(允许用户运行很多并发的程序),
+主要有两个机制保证了:一是context switch,二是scheduling policy
+context switch就是how,怎么stop a process and running another.
+scheduling policy就是which,哪一个程序需要接下来执行
+**** 进程(process)是OS(操作系统)对运行程序的一种抽象
+***** OS关于进程的API:
+大概分为:Create,Destroy,Wait,Miscellaneous Control(关于控制进程的), Status
+***** 关于Process Creation的细节:
+1.load code and static data到内存中,
+2.一部分内存提供run-time stack,一部分内存提供heap,用于程序动态请求内存的,
+3.还有一些其他的操作,I/O,
+4.然后开始进入entry point(也就是main())
+***** Process Status:
+大致分为running, ready, blocked 书中30页有示意图
+OS运用数据结构去侦测process status,其中register context会保留register state,
+这也是process可以resume的机制
+*** CH5 Interlude: Process API
+关于fork和exec两个create process的讲解:https://zhuanlan.zhihu.com/p/33159508
+
+
+*** CH6 Mechanism: Limited Direct Execution 
+# 本章主要是讲实现虚拟化的CPU所需要的基本机制
+基本思想:实现虚拟化的CPU,基本思想就是让CPU一会跑A process(进程),一会跑B process,来回切换
+主要困难:1.不丢失OS对CPU的控制 2. 性能提高 (总的来说:在控制的基础上,实现高性能)
+基本的实现技术:Limited Direct Execution
+介绍如下:
+如果是Direct Execution的话,没有limited,会导致两个问题
+**** Problem #1: OS不知道process是不是做了我们不想让他做的事.
+solve #1
+idea:限制process进行一些操作,如:I/O,获取一些额外的资源.
+how: 因为有些进程必须要进行这些限制性的操作(如:IO),我们把进程分为了user mode和kernel mode,
+user mode不能进行有限制的操作,kernel mode可以进行这些操作
+user mode用一些特殊的指令可以trap into kernel,然后kernel return-from-trap back to user-mode,
+这些指令在OS引导时,OS告诉硬件这些指令(trap table)在内存中的哪里.
+**** Problem #2: CPU不能实现time sharing.
+solve #2
+idea:如果CPU上没有OS运行的话,OS无法控制CPU,所以要让OS控制CPU
+how:在CPU上设置timer,每隔一段时间就interrupt,让process停止,然后OS决定是否还要再运行下去,这个决定是
+在OS中的scheduler作出的(后面会详细介绍),如果决定中止,然后运行另一个process,就要进行context switch,
+对目前的process状态变量进行存储
+**** 遗留下来的问题(在concurrency中会说到)
+如果interrupt发生在trap handling中或者在另一个interrupt中
+
+*** CH26 Concurrency: An Introduction
+thread(线程)主要是共享地址和数据,多线程表示有多个执行点 
+
