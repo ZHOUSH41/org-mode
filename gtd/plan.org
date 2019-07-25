@@ -78,15 +78,18 @@ knowledge:
 ***** TODO mit 6.824 Distributed Systems
 ***** TODO CMU 15-721 Advanced Database Systems
 ***** TODO CMU 15-440: Distributed Systems 
-**** kecheng:
+**** 课程:
 cos326 Functional programing (Ocaml)
 ****** compiler 
 15-411, cos320,cse131,CMSC 430, CIS 341
 [[https://llvm.org/docs/tutorial/OCamlLangImpl1.html]]
-[[http://www.stephendiehl.com/llvm/]]
+[http://www.stephendiehl.com/llvm/]
+
+书籍:Compiler Construction,
 ****** operate systems: 
-CMSC412,mit 6.828
- 
+,CMSC412,mit 6.828,hmc cs134,
+[http://lass.cs.umass.edu/~shenoy/courses/spring18/lectures.html] 
+书籍:Understanding the Linux Kernel
 **** NLP 
 ***** BOOKS:
 Speech and Language Processing,   by :Dan Jurafsky and James H. Martin
@@ -101,6 +104,7 @@ spacemacs 里面畅快的输入中文，可以在用 terminal 里面输入 LC_CT
 粘贴：C-o shift-p
 SPC s s 搜索
 SPC b d 关闭当前buffer, SPC w d关闭当前窗口
+SPC f R 重命名文件
 org-mode相关:
 1.todo切换: Esc界面,t或者T就可以循环
 ***** git command:
@@ -109,6 +113,8 @@ git add README.md
 git commit -m "first commit"
 git remote add origin git@github.com:ZHOUSH41/Learning.git
 git push -u origin master
+git reset . / git reset f1 取消添加到git中的文件
+git pull origin master --allow-unrelated-histories // 解决Git refusing to merge unrelated histories
 ***** linux卸载 command:
 sudo apt-get remove xxx  //卸载xxx
 sudo dpkg -l             //列出deb包
@@ -116,4 +122,6 @@ sudo dpkg -l             //列出deb包
 **** Hao Zhou, [[https://zhouh.github.io/]]
 头条NLP
 **** 霍华德　(知乎)
+*** 好工具 
+可以将apple的照片格式转化你为jpg:https://github.com/liuziangexit/HEIF-Utility
 
