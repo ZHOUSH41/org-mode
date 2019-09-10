@@ -51,8 +51,8 @@ SCHEDULED: <2019-03-15 五 07:30>
 ****** TODO lab
 ****** TODO proj
 ***** week6[%]
-**** TODO csapp[20%]
-: 可以不用看视频，直接看书和lecture
+**** TODO csapp[100%]
+: 看视频和lecture
 ***** DONE week2[100%]
       CLOSED: [2019-03-16 六 21:13]
 ****** DONE video,lecture:Floating Point
@@ -70,12 +70,23 @@ knowledge:
        float   rules:allow looping and conditional
        compiler:     dlc,
                      no include <stdio.h>
-***** TODO week3[%] 
-***** TODO week4[%]
-***** TODO week5[%]
-***** TODO week6[%]
+***** DONE week3[%] 
+CLOSED: [2019-09-10 二 09:32]
+***** DONE week4[%]
+CLOSED: [2019-09-10 二 09:32]
+***** DONE week5[%]
+CLOSED: [2019-09-10 二 09:32]
+***** DONE week6[%]
+CLOSED: [2019-09-10 二 09:32]
 **** 分布式技术（知乎:分布式技术有哪些？这些技术细分领域的研究方向为何百度上基本找不到？)
 ***** TODO mit 6.824 Distributed Systems
+https://pdos.csail.mit.edu/6.824/schedule.html
+***** TODO mit 6.828 OS
+https://pdos.csail.mit.edu/6.828/2018/schedule.html
+***** TODO mit 6.830 database
+http://db.csail.mit.edu/6.830/
+
+
 ***** TODO CMU 15-721 Advanced Database Systems
 ***** TODO CMU 15-440: Distributed Systems 
 **** 课程:
@@ -108,20 +119,108 @@ SPC f R 重命名文件
 org-mode相关:
 1.todo切换: Esc界面,t或者T就可以循环
 ***** git command:
+****** 创建版本库:
 git init
 git add README.md
 git commit -m "first commit"
+# 可以查到目前git的状态
+git status
+# 可以查看readme.txt 被更改了哪些内容
+git diff readme.txt
+****** 时光穿梭机:
+版本回退:
+# 可以显示从最近到最远的提交日志,可以 git log --pretty=oneline 显得紧凑一点
+git log 
+# 回退到上一个版本
+git reset --hard commit_id 
+git reset --hard HEAD^ 
+git reset --hard HEAD~1// 回退到上一个版本,~1可以改成~100,代表回退上100个版本
+# 可以看到记录你的每一次命令,所以得到你的commit id用于回退
+git reflog 
+
+撤销修改:
+# 还没有提交到暂存区,可以用这个命令回到上一个版本;其中 -- 很重要, 没有 -- 就变成了 “切换到另一个分支” 的命令
+git checkout -- readme.txt
+# 已经提交到暂存区,先让暂存区修改撤销,重新回到工作区的状态
+git reset HEAD <file>
+git reset HEAD readme.txt
+git checkout -- readme.txt
+# 如果已经到了版本库里面,那就按照回退版本的操作
+
+删除文件:
+# 先在工作去里面删除,再在版本库里面删除
+rm test.txt
+git rm test.txt
+git commit -m "remove test.txt"
+# 如果是误删恢复
+git checkout -- test.txt
+****** 远程仓库
 git remote add origin git@github.com:ZHOUSH41/Learning.git
 git push -u origin master
 git reset . / git reset f1 取消添加到git中的文件
 git pull origin master --allow-unrelated-histories // 解决Git refusing to merge unrelated histories
-***** linux卸载 command:
+****** 分支管理
+分支在实际中有什么用呢？假设你准备开发一个新功能，但是需要两周才能完成，第一周你写了50%的代码,
+如果立刻提交,由于代码还没写完,不完整的代码库会导致别人不能干活了.如果等代码全部写完再一次提交,又存在丢失每天进度的巨大风险。
+现在有了分支,就不用怕了.你创建了一个属于你自己的分支,别人看不到,还继续在原来的分支上正常工作,而你在自己的分支上干活,
+想提交就提交,直到开发完毕后,再一次性合并到原来的分支上,这样,既安全,又不影响别人工作。
+
+创建与合并分支:
+# 查看分支：
+git branch
+# 创建分支：
+git branch <name>
+# 切换分支：
+git checkout <name>
+# 创建+切换分支：
+git checkout -b <name>
+# 合并某分支到当前分支：
+git merge <name>
+# 删除分支：
+git branch -d <name>
+
+解决冲突:
+各分支之间文件提交的不一致,造成了冲突.
+当Git无法自动合并分支时,就必须首先解决冲突.解决冲突后,再提交,合并完成.
+解决冲突就是把Git合并失败的文件手动编辑为我们希望的内容,再提交.
+git log --graph 可以看到分支合并图
+git log --graph --pretty=oneline --abbrev-commit
+
+分支管理策略
+# merge仍然留下合并的历史
+git merge --no-ff -m "merge with no-ff" dev
+
+修复bug
+修复bug时，我们会通过创建新的bug分支进行修复，然后合并，最后删除；
+当手头工作没有完成时，先把工作现场git stash一下，然后去修复bug，修复后，再git stash pop，回到工作现场
+feature分支
+开发一个新feature，最好新建一个分支；
+如果要丢弃一个没有被合并过的分支，可以通过git branch -D <name>强行删除.
+****** 标签管理
+命令git tag <tagname>用于新建一个标签，默认为HEAD，也可以指定一个commit id
+git tag -d v0.1 删除标签
+命令git push origin <tagname>可以推送一个本地标签；
+
+命令git push origin --tags可以推送全部未推送过的本地标签；
+
+命令git tag -d <tagname>可以删除一个本地标签；
+
+命令git push origin :refs/tags/<tagname>可以删除一个远程标签。
+****** 自定义Git
+忽略某些文件时，需要编写.gitignore；
+.gitignore文件本身要放到版本库里，并且可以对.gitignore做版本管理
+***** linux command:
+显示隐藏文件: ls -ah
+卸载:
 sudo apt-get remove xxx  //卸载xxx
 sudo dpkg -l             //列出deb包
 *** 工作相关：
 **** Hao Zhou, [[https://zhouh.github.io/]]
 头条NLP
 **** 霍华德　(知乎)
+*** office小技巧:
+ppt 母版使用: 现在母版视图里面定义自己排版(可以定义内容图片等的占位符),然后直接在幻灯片上应用这个自定义的版式.
 *** 好工具 
 可以将apple的照片格式转化你为jpg:https://github.com/liuziangexit/HEIF-Utility
+
 

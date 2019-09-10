@@ -25,9 +25,33 @@ AT&T和x86语法不同之处的[http://www.delorie.com/djgpp/doc/brennan/brennan
 CS 也称segment, IP也称offset,下面是物理内存和Segment address的转换公式
  physical address = 16 * segment + offset
 **** Part2: The Boot Loader
-对于6.828用了传统的硬盘驱动器引导,引导程序由汇编的源文件boot/boot.s和boot/main.c,需要仔细阅读这些文件确保了解发生了什么(源码的100页),引导程序执行两个主要的功能:
-1.首先,引导加载程序将处理器从实际模式切换到32位保护模式,因为只有在这种模式下,软件才能访问处理器物理地址空间中1MB以上的所有内存,只需要理解分段地址(分段:偏移对)在保护模式下转换为物理地址的方式是不同的,并且在转换偏移量之后是32位而不是16位.
+对于6.828用了传统的硬盘驱动器引导,引导程序由汇编的源文件boot/boot.s和boot/main.c,需要仔细阅读这些文件确保了解发生了什么(源码的100页),
+引导程序执行两个主要的功能:
+1.首先,引导加载程序将处理器从实际模式切换到32位保护模式,因为只有在这种模式下,软件才能访问处理器物理地址空间中1MB以上的所有内存,
+只需要理解分段地址(分段:偏移对)在保护模式下转换为物理地址的方式是不同的,并且在转换偏移量之后是32位而不是16位.
 2.其次,引导加载程序通过x86的特殊I/O指令直接访问IDE磁盘设备寄存器,从而从硬盘读取内核.
-明白boot loader源码之后,看lab里obj/boot/boot.asm 这个反汇编文件可以很容易地查看物理内存中所有引导加载程序代码的确切位置,并且可以更容易地跟踪在GDB中遍历引导加载程序时发生的情况.同样obj/kern/kernel.asm包含一个jo内核的反汇编,它通常对调试很有用.
-** hacker your 
+明白boot loader源码之后,看lab里obj/boot/boot.asm 这个反汇编文件可以很容易地查看物理内存中所有引导加载程序代码的确切位置,
+并且可以更容易地跟踪在GDB中遍历引导加载程序时发生的情况.同样obj/kern/kernel.asm包含一个jo内核的反汇编,它通常对调试很有用.
+** hacker your kernel 
+**** setup:源码安装好了test161, git clone下来了sys161,
+** CMU 15213 
+Lecture 8:
+对齐:结构体内部对齐:是数据类型有K个byte,那么地址是K的倍数才行,
+     结构体对齐:结构体内部最大的数据类型有K个byte,那么地址是K的倍数才行
+Lecture 9:
+buffer overflow
+运行时的stack只有8MB,stack主要存储local var
+https://book.douban.com/subject/2709089/
+Lecture 11:
+Locality:
+1.起因:Memory和CPU两者的读取速度存在着巨大的差异.
+2.主要思想:Programs tend to use data and instructions with addresses near or equal to those they have used recently
+3.分类(不完全):频率上(temporal),空间上(spatial)
 
+Lecture 15:
+ECF: Signals & Nonlocal Jumps
+1. 回收child process是由parent process发出
+  1.1如果parent没有回收child process,然后parent process被killed,由init process回收孤儿进程
+  1.2.zombie进程只会发生在child进程结束但是parent没有回收
+
+2.wait: Synchronizing with Children
